@@ -4,11 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\RideOrder;
+use App\Models\Wallet;
 
 class RideOrderController extends Controller
 {
     public function orderCreate()
-    { return view('order.create'); }
+    { 
+        $userId = 1;
+
+        $wallet = Wallet::firstOrCreate(
+            ['user_id' => $userId],
+            ['balance' => 0]
+        );
+
+        return view('order.create', compact('wallet')); 
+    }
 
     public function orderStore(Request $request)
     {
@@ -18,6 +28,17 @@ class RideOrderController extends Controller
     $pricePerKm = $request->ride_type == 'Bike' ? 3000 : 6000;
     
     $totalPrice = $distance * $pricePerKm;
+
+    $userId = 1;
+
+    $wallet = Wallet::firstOrCreate(
+        ['user_id' => $userId],
+        ['balance' => 0]
+    );
+
+    if ($wallet->balance < $totalPrice) {
+        return redirect('/ride')->with('error', 'Saldo tidak cukup, silakan top up terlebih dahulu!');
+    }
 
     $data = [
         'passenger_name' => $request->passenger_name,
@@ -29,8 +50,12 @@ class RideOrderController extends Controller
     ];
 
     if (RideOrder::create($data)) {
+
+        $wallet->balance = $wallet->balance - $totalPrice;
+        $wallet->save();
+
         return redirect('/ride')->with([
-            'success' => 'Order Berhasil Dibuat!',
+            'success' => 'Order Berhasil Dibuat! Saldo wallet berhasil dipotong.',
             'pickup' => $request->pickup_location,
             'destination' => $request->destination,
             'distance' => $distance,

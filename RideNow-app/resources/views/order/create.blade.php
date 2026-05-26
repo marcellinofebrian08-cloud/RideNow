@@ -7,6 +7,15 @@
 
     <h1>RideNow Order Homepage</h1>
 
+    <h3>Saldo Wallet</h3>
+    <p>Rp {{ number_format($wallet->balance, 0, ',', '.') }}</p>
+
+    <p>
+        <a href="/wallet">Top Up Wallet</a>
+    </p>
+
+    <hr>
+
     @if(session('success'))
         <script>
             alert("{{ session('success') }}\n\nPickup Point: {{ session('pickup') }}\nDestination: {{ session('destination') }}\nDistance: {{ session('distance') }} KM\nPrice: Rp {{ number_format(session('price'), 0, ',', '.') }}");
