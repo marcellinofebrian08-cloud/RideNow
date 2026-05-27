@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RideOrderController;
+use App\Http\Controllers\WalletController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,3 +19,7 @@ Route::post('/login', [AuthController::class, 'login']); //untuk memproses data 
 Route::get('/ride', [RideOrderController::class, 'orderCreate']); //halaman untuk order bike/mobil
 
 Route::post('/ride', [RideOrderController::class, 'orderStore']); //proses menyimpan data order bike/mobil ke dalam database
+
+Route::get('/wallet', [WalletController::class, 'index'])->name('wallet.index'); //Untuk meenghubungkan ke Wallet
+
+Route::post('/wallet/topup', [WalletController::class, 'topup'])->name('wallet.topup'); //Untuk Topup ke wallet
