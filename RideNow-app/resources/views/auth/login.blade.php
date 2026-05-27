@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login RideNow</title>
+    <title>Masuk Akun RideNow</title>
 </head>
 <body>
 
-    <h1>Login RideNow</h1>
+    <h1>Masuk Akun RideNow</h1>
 
     @if(session('error'))
         <script>
