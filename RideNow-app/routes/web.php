@@ -7,6 +7,7 @@ use App\Http\Controllers\SendOrderController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\DineInController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\FoodController;
 
 // halaman awal langsung diarahkan ke login
 Route::get('/', function () {
@@ -66,4 +67,13 @@ Route::middleware('auth')->group(function () {
     // Fitur History
     Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
     });
+
+    //Halaman Food
+    Route::get('/food', [FoodController::class, 'index'])->name('food.index');
+    Route::get('/food/restaurant/{id}', [FoodController::class, 'show'])->name('food.show');
+    Route::post('/food/add-to-cart/{id}', [FoodController::class, 'addToCart'])->name('food.addToCart');
+    Route::get('/food/receipt', [FoodController::class, 'showReceipt'])->name('food.receipt');
+    Route::post('/food/checkout', [FoodController::class, 'checkout'])->name('food.checkout');
+    Route::get('/food/history', [FoodController::class, 'history'])->name('food.history');
+    Route::get('/food/clear-cart', [FoodController::class, 'clearCart'])->name('food.clearCart');
 
