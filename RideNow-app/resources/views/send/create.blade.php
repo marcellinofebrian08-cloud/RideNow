@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>RideNow - Book a Ride</title>
+    <title>RideNow - Send Item</title>
 </head>
 <body>
 
-    <h1>RideNow Order Homepage</h1>
+    <h1>RideNow Send Homepage</h1>
 
     <h3>Saldo Wallet</h3>
     <p>Rp {{ number_format($wallet->balance, 0, ',', '.') }}</p>
@@ -28,11 +28,19 @@
         </script>
     @endif
 
-    <form method="POST" action="/ride">
+    <form method="POST" action="/send">
         @csrf
 
-        <label>Nama Penumpang</label><br>
-        <input type="text" name="passenger_name" required>
+        <label>Nama Pengirim</label><br>
+        <input type="text" name="sender_name" required>
+        <br><br>
+
+        <label>Nama Penerima</label><br>
+        <input type="text" name="receiver_name" required>
+        <br><br>
+
+        <label>Nama Barang</label><br>
+        <input type="text" name="item_name" required>
         <br><br>
 
         <label>Titik Awal Penjemputan</label><br>
@@ -43,13 +51,8 @@
         <input type="text" name="destination" required>
         <br><br>
 
-        <label>Jarak / Distance (dalam KM)</label><br>
+        <label>Jarak / Distance (dalam KM) Rp4000/KM </label><br>
         <input type="number" name="distance" min="1" max="100" required>
-        <br><br>
-
-        <label>Jenis Kendaraan</label><br>
-        <input type="radio" name="ride_type" value="Bike" checked> RideNow Bike (Rp 3.000 / KM)<br>
-        <input type="radio" name="ride_type" value="Car"> RideNow Car (Rp 6.000 / KM)
         <br><br>
 
         <input type="submit" value="Pesan Sekarang">
