@@ -43,6 +43,60 @@ class AuthController extends Controller
         ]);
         return redirect('/login');
     }
+
     public function home()
     { return view('home'); }
+
+    public function editProfile()
+    {
+        return view('auth.edit-profile');
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email'
+        ]);
+
+        $user = Auth::user();
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+
+        return back()->with('success', 'Profile berhasil diupdate');
+    }
+
+    public function changePasswordPage()
+    { return view('auth.change-password'); }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|min:6'
+        ]);
+
+        $user = Auth::user();
+
+        if (!Hash::check($request->old_password, $user->password)) {
+            return back()->with('error', 'Password sekarang salah');
+        }
+
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return back()->with('success', 'Password berhasil diganti');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+
+        return redirect('/login');
+    }
 }
