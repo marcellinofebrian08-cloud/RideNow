@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>RideNow Home</title>
     <style>
@@ -73,7 +72,7 @@
                 History
             </a>
             <a href="/dinein" class="menu-link">
-                Go Dine In
+                Dine In
             </a>
         </div>
     </div>
