@@ -6,7 +6,7 @@ use App\Models\Restaurant;
 use App\Models\Menu;
 use Illuminate\Database\Seeder;
 
-class RestaurantSeeder extends Seeder
+class RestaurantsSeeder extends Seeder
 {
     public function run()
     {
@@ -399,6 +399,5 @@ class RestaurantSeeder extends Seeder
             'description' => 'Gyoza dipanggang dengan isi ayam',
             'price' => 50000
         ]);
-
     }
 }

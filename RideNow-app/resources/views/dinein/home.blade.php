@@ -54,8 +54,6 @@
         </h3>
         @foreach($restaurants as $restaurant)
         <div class="restaurant-card">
-            <img src="{{ asset('storage/'.$restaurant->image) }}"
-                class="restaurant-image">
             <div class="mt-3">
                 <h4>
                     {{ $restaurant->name }}

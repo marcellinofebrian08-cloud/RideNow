@@ -6,31 +6,43 @@ use App\Http\Controllers\RideOrderController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\DineInController;
 
-
+// halaman awal langsung diarahkan ke login
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
+// halaman login
+Route::get('/login', [AuthController::class, 'loginPage'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/login', [AuthController::class, 'loginPage']); //untuk menghubungkan ke loginpage
+// halaman register
+Route::get('/register', [AuthController::class, 'registerPage']);
+Route::post('/register', [AuthController::class, 'register']);
 
-Route::get('/register', [AuthController::class, 'registerPage']); //untuk menghubungkan ke registerpage
+Route::middleware('auth')->group(function () {
+    //halaman home
+    Route::get('/home', [AuthController::class, 'home']);
 
-Route::post('/login', [AuthController::class, 'login']); //untuk memproses data login
+    //halaman edit profile
+    Route::get('/edit-profile', [AuthController::class, 'editProfile']);
+    Route::post('/edit-profile', [AuthController::class, 'updateProfile']);
 
-Route::post('/register', [AuthController::class, 'register']); //untuk memproses data register
+    // halaman change password
+    Route::get('/change-password', [AuthController::class, 'changePasswordPage']);
+    Route::post('/change-password', [AuthController::class, 'changePassword']);
 
-Route::get('/home', [AuthController::class, 'home']); // untuk menghubungkan ke home
+    // halaman logout
+    Route::get('/logout', [AuthController::class, 'logout']);
 
-Route::get('/ride', [RideOrderController::class, 'orderCreate']); //halaman untuk order bike/mobil
+    // halaman order ride (motor/mobil)
+    Route::get('/ride', [RideOrderController::class, 'orderCreate']);
+    Route::post('/ride', [RideOrderController::class, 'orderStore']);
 
-Route::post('/ride', [RideOrderController::class, 'orderStore']); //proses menyimpan data order bike/mobil ke dalam database
+    // halaman wallet
+    Route::get('/wallet', [WalletController::class, 'index'])->name('wallet.index');
+    Route::post('/wallet/topup', [WalletController::class, 'topup'])->name('wallet.topup');
 
-Route::get('/wallet', [WalletController::class, 'index'])->name('wallet.index'); //Untuk meenghubungkan ke Wallet
-
-Route::post('/wallet/topup', [WalletController::class, 'topup'])->name('wallet.topup'); //Untuk Topup ke wallet
-
-Route::get('/dinein', [DineInController::class, 'index']);//untuk menghubungkan ke dine in
-
-Route::get('/booking/{id}', [DineInController::class, 'bookingForm']);//untuk menghubungkan booking di dinein
-
-Route::post('/booking/store', [DineInController::class, 'bookingStore']);//menyimpan data booking ke database bookingStore
+    // halaman dine in
+    Route::get('/dinein', [DineInController::class, 'index']);
+    Route::get('/booking/{id}', [DineInController::class, 'bookingForm']);
+    Route::post('/booking/store', [DineInController::class, 'bookingStore']);
+});
