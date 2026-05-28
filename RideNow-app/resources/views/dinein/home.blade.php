@@ -50,7 +50,7 @@
         <div class="row mb-4">
             @foreach($categories as $category)
             <div class="col-3 mb-4">
-                <a href="/dinein/category/{{$category->id}}" style="text-decoration: :none;color:black;">
+                <a href="/dinein/category/{{$category->id}}" style="text-decoration: none;color:black;">
                     <div class="text-center">
                         <img src="{{ asset('storage/'.$category->icon) }}"width="70"height="70"style="object-fit:cover;border-radius:15px;">
                         <p class="mt-2">
@@ -66,8 +66,6 @@
         </h3>
         @foreach($restaurants as $restaurant)
         <div class="restaurant-card">
-            <img src="{{ asset('storage/'.$restaurant->image) }}"
-                class="restaurant-image">
             <div class="mt-3">
                 <h4>
                     {{ $restaurant->name }}

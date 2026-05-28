@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('d_bookings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('restaurant_id')
-                ->constrained('d_restaurant')
+                ->constrained('d_restaurants')
                 ->onDelete('cascade');
             $table->string('customer_name');
             $table->string('phone');
             $table->date('booking_date');
-            $table->('total_people');
+            $table->integer('total_people');
             $table->timestamps();
         });
     }

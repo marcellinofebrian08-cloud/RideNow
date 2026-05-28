@@ -32,15 +32,14 @@ class DineInController extends Controller
     }
     public function bookingStore(Request $request)
     {
-        dBooking::created([
+        dBooking::create([
             'restaurant_id' => $request->restaurant_id,
-            'customer_name'=> $request->customner_name,
+            'customer_name'=> $request->customer_name,
             'phone' => $request->phone,
             'booking_date' => $request->booking_date,
             'total_people' => $request->total_people
         ]);
-        return redirect('/dinein')
-            ->with('success','Booking berhasil');
+        return redirect('/dinein')->with('success','Booking berhasil');
     }
     public function category($id)
     {

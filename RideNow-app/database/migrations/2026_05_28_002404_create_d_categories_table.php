@@ -22,8 +22,8 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function foodds()
+    public function foods()
     {
-        return $this->hasMany(dfood::class'category_id');
+        return $this->hasMany( dfood::class, 'category_id');
     }
 };
