@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RideOrderController;
+use App\Http\Controllers\SendOrderController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\DineInController;
 
@@ -36,6 +37,16 @@ Route::middleware('auth')->group(function () {
     // halaman order ride (motor/mobil)
     Route::get('/ride', [RideOrderController::class, 'orderCreate']);
     Route::post('/ride', [RideOrderController::class, 'orderStore']);
+    Route::get('/ride/ordering/{id}', [RideOrderController::class, 'orderTracking'])->name('order.tracking');
+    Route::post('/ride/cancel/{id}', [RideOrderController::class, 'orderCancel'])->name('order.cancel');
+    Route::post('/ride/complete/{id}', [RideOrderController::class, 'orderComplete'])->name('order.complete');
+
+    // halaman order send
+    Route::get('/send', [SendOrderController::class, 'sendCreate']);
+    Route::post('/send', [SendOrderController::class, 'sendStore']);
+    Route::get('/send/ordering/{id}', [SendOrderController::class, 'sendTracking'])->name('send.tracking');
+    Route::post('/send/cancel/{id}', [SendOrderController::class, 'sendCancel'])->name('send.cancel');
+    Route::post('/send/complete/{id}', [SendOrderController::class, 'sendComplete'])->name('send.complete');
 
     // halaman wallet
     Route::get('/wallet', [WalletController::class, 'index'])->name('wallet.index');

@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ride_orders', function (Blueprint $table) {
+        Schema::create('send_orders', function (Blueprint $table) {
             $table->id();
-            $table->string('passenger_name');
+            $table->string('sender_name');
+            $table->string('receiver_name');
             $table->string('pickup_location');
             $table->string('destination');
-            $table->enum('ride_type', ['Bike', 'Car']);
+            $table->integer('distance');
+            $table->string('item_name');
             $table->integer('price');
             $table->string('status')->default('Pending');
             $table->string('driver_name')->nullable();
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ride_orders');
+        Schema::dropIfExists('send_orders');
     }
 };

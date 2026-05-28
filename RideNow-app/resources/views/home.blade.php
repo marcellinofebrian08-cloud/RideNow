@@ -40,7 +40,6 @@
         <p>Login berhasil</p>
     </div>
     <div class="container">
-        <!-- account -->
         <div class="box">
             <h3>Account</h3>
             <a href="/edit-profile" class="menu-link">
@@ -53,7 +52,6 @@
                 Logout
             </a>
         </div>
-        <!-- menu -->
         <div class="box">
             <h3>Main Menu</h3>
             <a href="/wallet" class="menu-link">
@@ -61,6 +59,9 @@
             </a>
             <a href="/ride" class="menu-link">
                 Ride
+            </a>
+            <a href="/send" class="menu-link">
+                Send
             </a>
             <a href="/food" class="menu-link">
                 Food
