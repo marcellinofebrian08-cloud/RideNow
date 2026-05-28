@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\RideOrder;
 use App\Models\Wallet;
+use App\Models\History;
 
 class RideOrderController extends Controller
 {
@@ -62,6 +63,14 @@ class RideOrderController extends Controller
             $wallet->balance = $wallet->balance - $totalPrice;
             $wallet->save();
 
+            History::create([
+                'user_id' => $userId,
+                'transaction_type' => 'Ride Order',
+                'description' => 'Pesanan ' . $request->ride_type . ' dari ' . $request->pickup_location . ' ke ' . $request->destination,
+                'amount' => $totalPrice,
+                'status' => 'Accepted'
+            ]);
+
             return redirect()->route('order.tracking', $order->id)->with([
                 'success' => 'Order berhasil dibuat!'
             ]);
@@ -86,6 +95,14 @@ class RideOrderController extends Controller
             if ($wallet) {
                 $wallet->balance = $wallet->balance + $order->price;
                 $wallet->save();
+
+                History::create([
+                    'user_id' => $userId,
+                    'transaction_type' => 'Ride Order Refund',
+                    'description' => 'Refund pembatalan pesanan ride dari ' . $order->pickup_location . ' ke ' . $order->destination,
+                    'amount' => $order->price,
+                    'status' => 'Refund'
+                ]);
             }
 
             $order->update(['status' => 'Canceled']);

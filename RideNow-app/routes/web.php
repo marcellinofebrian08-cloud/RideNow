@@ -6,6 +6,7 @@ use App\Http\Controllers\RideOrderController;
 use App\Http\Controllers\SendOrderController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\DineInController;
+use App\Http\Controllers\HistoryController;
 
 // halaman awal langsung diarahkan ke login
 Route::get('/', function () {
@@ -61,5 +62,8 @@ Route::middleware('auth')->group(function () {
     
     //fitur kategori
     Route::get('/dinein/category/{id}',[DineInController::class, 'category']);
+
+    // Fitur History
+    Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
     });
 
