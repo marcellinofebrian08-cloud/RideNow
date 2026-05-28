@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RideOrderController;
 use App\Http\Controllers\WalletController;
+use App\Http\Controllers\DineInController;
 
 
 Route::get('/', function () {
@@ -27,3 +28,9 @@ Route::post('/ride', [RideOrderController::class, 'orderStore']); //proses menyi
 Route::get('/wallet', [WalletController::class, 'index'])->name('wallet.index'); //Untuk meenghubungkan ke Wallet
 
 Route::post('/wallet/topup', [WalletController::class, 'topup'])->name('wallet.topup'); //Untuk Topup ke wallet
+
+Route::get('/dinein', [DineInController::class, 'index']);//untuk menghubungkan ke dine in
+
+Route::get('/booking/{id}', [DineInController::class, 'bookingForm']);//untuk menghubungkan booking di dinein
+
+Route::post('/booking/store', [DineInController::class, 'bookingStore']);//menyimpan data booking ke database bookingStore

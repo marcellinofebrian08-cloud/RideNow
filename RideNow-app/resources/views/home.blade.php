@@ -13,3 +13,5 @@
 <a href="/mart">Mart</a><br><br>
 
 <a href="/history">History</a><br><br>
+
+<a href="/dinein">Go Dine In</a><br><br>
