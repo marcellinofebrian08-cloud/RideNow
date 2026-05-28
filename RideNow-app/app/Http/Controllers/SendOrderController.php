@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SendOrder;
 use App\Models\Wallet;
+use App\Models\History;
 
 class SendOrderController extends Controller
 {
@@ -17,7 +18,7 @@ class SendOrderController extends Controller
             ['balance' => 0]
         );
 
-        return view('send.create', compact('wallet')); 
+        return view('send.create', compact('wallet'));
     }
 
     public function sendStore(Request $request)
@@ -50,8 +51,8 @@ class SendOrderController extends Controller
             'destination' => $request->destination,
             'distance' => $distance,
             'item_name' => $request->item_name,
-            'price' => $totalPrice, 
-            'status' => 'Accepted', 
+            'price' => $totalPrice,
+            'status' => 'Accepted',
             'driver_name' => $pick['name'],
             'plate_number' => $pick['plate']
         ];
@@ -60,6 +61,14 @@ class SendOrderController extends Controller
         if ($order) {
             $wallet->balance = $wallet->balance - $totalPrice;
             $wallet->save();
+            
+            History::create([
+                'user_id' => $userId,
+                'transaction_type' => 'Send Order',
+                'description' => 'Pengiriman ' . $request->item_name . ' dari ' . $request->pickup_location . ' ke ' . $request->destination,
+                'amount' => $totalPrice,
+                'status' => 'Accepted'
+            ]);
 
             // Redirect menggunakan named route persis seperti ride
             return redirect()->route('send.tracking', $order->id)->with([
@@ -86,6 +95,14 @@ class SendOrderController extends Controller
             if ($wallet) {
                 $wallet->balance = $wallet->balance + $order->price;
                 $wallet->save();
+
+                History::create([
+                    'user_id' => $userId,
+                    'transaction_type' => 'Send Order Refund',
+                    'description' => 'Refund pembatalan pengiriman ' . $order->item_name . ' dari ' . $order->pickup_location . ' ke ' . $order->destination,
+                    'amount' => $order->price,
+                    'status' => 'Refund'
+                ]);
             }
 
             $order->update(['status' => 'Canceled']);
