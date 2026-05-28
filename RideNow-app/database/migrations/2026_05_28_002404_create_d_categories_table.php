@@ -22,8 +22,8 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function foodds()
     {
-        Schema::dropIfExists('d_categories');
+        return $this->hasMany(dfood::class'category_id');
     }
 };

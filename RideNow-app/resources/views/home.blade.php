@@ -14,4 +14,4 @@
 
 <a href="/history">History</a><br><br>
 
-<a href="/dinein">Go Dine In</a><br><br>
+<a href="/dinein">Dine In</a><br><br>

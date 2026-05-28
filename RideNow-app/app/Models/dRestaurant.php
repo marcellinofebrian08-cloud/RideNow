@@ -13,4 +13,8 @@ class dRestaurant extends Model
         'address',
         'rating'
     ];
+    public function foods()
+    {
+        return $this->hasMany(dFood::class,'restaurant_id');
+    }
 }

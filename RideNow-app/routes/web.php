@@ -34,3 +34,5 @@ Route::get('/dinein', [DineInController::class, 'index']);//untuk menghubungkan 
 Route::get('/booking/{id}', [DineInController::class, 'bookingForm']);//untuk menghubungkan booking di dinein
 
 Route::post('/booking/store', [DineInController::class, 'bookingStore']);//menyimpan data booking ke database bookingStore
+
+Route::get('/dinein/category/{id}',[DineInController::class, 'category']);//fitur kategori

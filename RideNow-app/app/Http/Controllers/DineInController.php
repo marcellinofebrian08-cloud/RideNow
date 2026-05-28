@@ -27,7 +27,7 @@ class DineInController extends Controller
     }
     public function bookingForm($id)
     {
-        $restaurant = dRestaurant::findOrFail($id);
+        $restaurant = dRestaurant::with('foods')->find($id);
         return view('dinein.booking',compact('restaurant'));
     }
     public function bookingStore(Request $request)
@@ -41,5 +41,18 @@ class DineInController extends Controller
         ]);
         return redirect('/dinein')
             ->with('success','Booking berhasil');
+    }
+    public function category($id)
+    {
+        $categories = dCategory::all();
+        $vouchers = dVoucher::all();
+        $restaurants = dRestaurant::whereHas('foods', function($query) use($id){
+            $query->where('category_id', $id);
+        })->with('foods')->get();
+        return view('dinein.home', compact (
+            'restaurants',
+            'vouchers',
+            'categories'
+        ));
     }
 }
