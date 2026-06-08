@@ -72,7 +72,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/food', [FoodController::class, 'index'])->name('food.index');
     Route::get('/food/restaurant/{id}', [FoodController::class, 'show'])->name('food.show');
     Route::post('/food/add-to-cart/{id}', [FoodController::class, 'addToCart'])->name('food.addToCart');
-    Route::get('/food/receipt', [FoodController::class, 'showReceipt'])->name('food.receipt');
+    Route::get('/food/remove-item/{id}', [FoodController::class, 'removeItem'])->name('food.removeItem');
+    Route::get('/food/receipt', [FoodController::class, 'showReceipt'])->name('food.showReceipt');
     Route::post('/food/checkout', [FoodController::class, 'checkout'])->name('food.checkout');
     Route::get('/food/history', [FoodController::class, 'history'])->name('food.history');
     Route::get('/food/clear-cart', [FoodController::class, 'clearCart'])->name('food.clearCart');

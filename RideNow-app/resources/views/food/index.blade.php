@@ -11,16 +11,16 @@
     <h3>Pilih Lokasi Pengantaran:</h3>
     <p>
         <a href="{{ route('food.index', ['location' => 'UNTAR']) }}" 
-           style="{{ $selectLocation == 'UNTAR' ? 'font-weight: bold; font-size: 18px; color: green;' : '' }}">
+           style="{{ $pilih_lokasi == 'UNTAR' ? 'font-weight: bold; font-size: 18px; color: green;' : '' }}">
            [ UNTAR ]
         </a> 
         | 
         <a href="{{ route('food.index', ['location' => 'Rumah']) }}" 
-           style="{{ $selectLocation == 'Rumah' ? 'font-weight: bold; font-size: 18px; color: blue;' : '' }}">
+           style="{{ $pilih_lokasi == 'Rumah' ? 'font-weight: bold; font-size: 18px; color: blue;' : '' }}">
            [ Rumah ]
         </a>
     </p>
-    <p>Menampilkan restoran terdekat dari: <strong>{{ $selectLocation }}</strong></p>
+    <p>Menampilkan restoran terdekat dari: <strong>{{ $pilih_lokasi }}</strong></p>
     <br>
 
     <h2>Daftar Restoran:</h2>
@@ -47,6 +47,12 @@
 
     <br><br>
     <hr>
-    <a href="{{ route('food.history') }}">📜 Lihat Riwayat Pesanan (History)</a>
+    <a href="{{ route('food.history') }}">Lihat Riwayat Pesanan</a>
+    <p>
+    <a href="/home" style="text-decoration: none; background-color:#f0f0f0; color: black; padding: 5px 10px; border: 1px solid #ccc; border-radius: 4px;">
+        Kembali ke Dashboard
+    </a>
+</p>
+<hr>
 </body>
 </html>
