@@ -96,7 +96,7 @@ class RestaurantsSeeder extends Seeder
             'menu_name' => 'Iced Strawberry Acai Lemonade',
             'description' => 'Non Coffee. Minuman dengan campuran buah lemon dan stroberi.',
             'price' => 50000,
-            'picture' => 'food_img/strawberry_acai_lemonade.jpg'
+            'picture' => 'food_img/strawberry_acai_lemonade.jpeg'
 
         ]);
         Menu::create([
