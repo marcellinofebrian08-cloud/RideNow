@@ -4,16 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RideOrder extends Model
+class SendOrder extends Model
 {
+    protected $table = 'send_orders';
+
     protected $fillable = [
-        'passenger_name',
+        'sender_name',
+        'receiver_name',
         'pickup_location',
         'destination',
-        'ride_type',
+        'distance',
+        'item_name',
         'price',
         'status',
-        'driver_name', 
+        'driver_name',
         'plate_number'
     ];
 }
