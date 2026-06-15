@@ -1,58 +1,62 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <title>Pesan Makanan</title>
-</head>
-<body>
-    <h1>Layanan Pesan Antar Makanan</h1>
-    <hr>
+<h1>Layanan Pesan Antar Makanan</h1>
 
-    <h3>Pilih Lokasi Pengantaran:</h3>
-    <p>
-        <a href="{{ route('food.index', ['location' => 'UNTAR']) }}" 
-           style="{{ $pilih_lokasi == 'UNTAR' ? 'font-weight: bold; font-size: 18px; color: green;' : '' }}">
-           [ UNTAR ]
-        </a> 
-        | 
-        <a href="{{ route('food.index', ['location' => 'Rumah']) }}" 
-           style="{{ $pilih_lokasi == 'Rumah' ? 'font-weight: bold; font-size: 18px; color: blue;' : '' }}">
-           [ Rumah ]
-        </a>
-    </p>
-    <p>Menampilkan restoran terdekat dari: <strong>{{ $pilih_lokasi }}</strong></p>
-    <br>
+<h3>Pilih Lokasi Pengantaran:</h3>
+<p>
+    <a href="{{ route('food.index', ['location' => 'UNTAR']) }}" style="text-decoration: none;">
+       <button type="button" style="{{ $pilih_lokasi == 'UNTAR' ? 'font-weight: bold; background-color:lightpink; color: maroon; border: 2px solid maroon;' : 'background-color:white; border: 1px solid lightgray;' }} padding: 5px 15px; cursor: pointer;">
+            UNTAR
+        </button>
+    </a> 
+     
+    <a href="{{ route('food.index', ['location' => 'Rumah']) }}" style="text-decoration: none;">
+       <button type="button" style="{{ $pilih_lokasi == 'Rumah' ? 'font-weight: bold; background-color:lightcyan; color: lightseagreen; border: 2px solid lightseagreen;' : 'background-color: white; border: 1px solid lightgray;' }} padding: 5px 15px; cursor: pointer;">
+            Rumah
+        </button>
+    </a>
+</p>
+<p>Menampilkan restoran terdekat dari: <strong>{{ $pilih_lokasi }}</strong></p>
 
-    <h2>Daftar Restoran:</h2>
-    <table border="1" cellpadding="10" cellspacing="0">
+<h2>Daftar Restoran:</h2>
+
+@if($restaurants->isEmpty())
+    <p>Belum ada restoran yang tersedia di lokasi ini.</p>
+@else
+    <table border="1" cellpadding="5" cellspacing="0" style="border: 3px solid black; border-collapse: collapse;">
         <thead>
-            <tr>
-                <th>Nama Restoran</th>
-                <th>Kategori</th>
-                <th>Aksi</th>
+            <tr style="border-bottom: 3px solid black; background-color: lemonchiffon;">
+                <th style="width: 50px; border: 3px solid black;">No</th>
+                <th style="width: 300px; border: 3px solid black;">Nama Restoran</th>
+                <th style="width: 150px; border: 3px solid black;">Kategori</th>
+                <th style="width: 120px; border: 3px solid black;">Aksi</th>
             </tr>
         </thead>
         <tbody>
             @foreach($restaurants as $resto)
-            <tr>
-                <td><strong>{{ $resto->resto_name }}</strong></td>
-                <td>{{ $resto->category }}</td>
-                <td>
-                    <a href="{{ route('food.show', $resto->id) }}">Lihat Menu</a>
-                </td>
-            </tr>
+                <tr>
+                    <td style="text-align: center; border: 3px solid black;">{{ $loop->iteration }}</td>
+                    <td style="border: 3px solid black;"><strong>{{ $resto->resto_name }}</strong></td>
+                    <td style="border: 3px solid black;">{{ $resto->category }}</td>
+                    <td style="text-align: center; border: 3px solid black;">
+                        <a href="{{ route('food.show', $resto->id) }}" style="text-decoration: none;">Lihat Menu</a>
+                    </td>
+                </tr>
             @endforeach
         </tbody>
     </table>
+@endif
 
-    <br><br>
-    <hr>
-    <a href="{{ route('food.history') }}">Lihat Riwayat Pesanan</a>
-    <p>
-    <a href="/home" style="text-decoration: none; background-color:#f0f0f0; color: black; padding: 5px 10px; border: 1px solid #ccc; border-radius: 4px;">
-        Kembali ke Dashboard
+<br>
+<p>
+    <a href="{{ route('food.history') }}" style="text-decoration: none;">
+        <button type="button" style="background-color: plum; border: 1px solid lightgray; padding: 6px 12px; cursor: pointer; margin-right: 10px;">
+            Lihat Riwayat Pesanan
+        </button>
+    </a>
+    
+    <a href="/home" style="text-decoration: none;">
+        <button type="button" style="background-color: plum; border: 1px solid lightgray; padding: 6px 12px; cursor: pointer;">
+
+            Kembali ke Dashboard
+        </button>
     </a>
 </p>
-<hr>
-</body>
-</html>
