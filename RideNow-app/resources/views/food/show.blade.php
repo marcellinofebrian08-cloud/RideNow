@@ -11,7 +11,21 @@
     </p>
     <hr>
 
-    <h1>{{ $restaurant->resto_name }}</h1>
+  <hr>
+
+@if(session('success'))
+    <p style="color: green;">
+        <b>{{ session('success') }}</b>
+    </p>
+@endif
+
+@if(session('error'))
+    <p style="color: red;">
+        <b>{{ session('error') }}</b>
+    </p>
+@endif
+
+<h1>{{ $restaurant->resto_name }}</h1>
     <p>Kategori: {{ $restaurant->category }} | Lokasi: {{ $restaurant->location }}</p>
     <hr>
 

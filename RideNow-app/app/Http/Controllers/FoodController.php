@@ -34,22 +34,23 @@ class FoodController extends Controller
         return view('food.show', compact('restaurant'));
     }
 
-    public function addToCart(Request $request, $id)
-    {   
+    public function addToCart(Request $request, $id) 
+    {
+        $menu = Menu::with('restaurant')->findOrFail($id);
+        $cart = session()->get('cart', []);
+
         if (!empty($cart)) {
 
             $first_item = reset($cart);
 
             if ($first_item['restaurant_id'] != $menu->restaurant_id) {
 
-            return redirect()->back()->with(
-                'error',
-                'Anda sudah memilih menu dari restoran lain. Kosongkan keranjang terlebih dahulu.'
-            );
+                return redirect()->back()->with(
+                    'error',
+                    'Anda sudah memilih menu dari restoran lain. Kosongkan keranjang terlebih dahulu.'
+                );
+            }
         }
-    }
-        $menu = Menu::with('restaurant')->findOrFail($id);
-        $cart = session()->get('cart', []);
 
         if (isset($cart[$id])) {
             $cart[$id]['quantity']++;
@@ -63,9 +64,12 @@ class FoodController extends Controller
             ];
         }
 
-
         session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Makanan berhasil dimasukkan ke keranjang!');
+
+        return redirect()->back()->with(
+            'success',
+            'Makanan berhasil dimasukkan ke keranjang!'
+        );
     }
 
     public function removeItem($id)
