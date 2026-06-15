@@ -63,8 +63,7 @@
         @if($saldo_cukup)
             <form action="{{ route('food.checkout') }}" method="POST">
                 @csrf
-                <input type="hidden" name="resto_name" value="Restoran Pilihan Driver">
-                <button type="submit" style="background-color: green; color: white; padding: 10px; cursor: pointer; font-weight: bold;">✔️ BAYAR PAKAI WALLET & PESAN</button>
+                <button type="submit" style="background-color: green; color: white; padding: 10px; cursor: pointer; font-weight: bold;">BAYAR PAKAI WALLET & PESAN</button>
             </form>
         @else
             <div style="background-color:#ffcccc; color:#cc0000; padding: 10px; display: inline-block; border: 1px solid red;">

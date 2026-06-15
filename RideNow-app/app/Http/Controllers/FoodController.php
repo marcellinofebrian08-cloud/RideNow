@@ -172,7 +172,12 @@ class FoodController extends Controller
             'status'            => 'Success'
         ]);
 
-        $resto_name = $request->input('resto_name', 'Restoran Pilihan');
+        $restaurant = Restaurant::find($resto_id);
+
+        $resto_name = $restaurant
+            ? $restaurant->resto_name
+            : 'Restoran Tidak Diketahui';
+
         OrderHistory::create([
             'resto_name'  => $resto_name,
             'total_price' => $harga_akhir
