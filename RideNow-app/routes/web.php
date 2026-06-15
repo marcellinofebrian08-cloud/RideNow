@@ -40,15 +40,21 @@ Route::middleware('auth')->group(function () {
     // halaman wallet
     Route::get('/wallet', [WalletController::class, 'index'])->name('wallet.index');
     Route::post('/wallet/topup', [WalletController::class, 'topup'])->name('wallet.topup');
-    
+
     // halaman dine in
     Route::get('/dinein', [DineInController::class, 'index']);
-    
+
     //halam booking
     Route::get('/booking/{id}', [DineInController::class, 'bookingForm']);
     Route::post('/booking/store', [DineInController::class, 'bookingStore']);
-    
-    //fitur kategori
-    Route::get('/dinein/category/{id}',[DineInController::class, 'category']);
-    });
 
+    //fitur kategori
+    Route::get('/dinein/category/{id}', [DineInController::class, 'category']);
+
+    //transit
+    Route::get('/transit', [TransitController::class, 'index']);
+
+    //booking transit
+    Route::get('/transit/booking/{id}', [TransitController::class, 'bookingForm']);
+    Route::post('/transit/booking/store', [TransitController::class, 'bookingStore']);
+});
