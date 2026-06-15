@@ -35,7 +35,19 @@ class FoodController extends Controller
     }
 
     public function addToCart(Request $request, $id)
-    {
+    {   
+        if (!empty($cart)) {
+
+            $first_item = reset($cart);
+
+            if ($first_item['restaurant_id'] != $menu->restaurant_id) {
+
+            return redirect()->back()->with(
+                'error',
+                'Anda sudah memilih menu dari restoran lain. Kosongkan keranjang terlebih dahulu.'
+            );
+        }
+    }
         $menu = Menu::with('restaurant')->findOrFail($id);
         $cart = session()->get('cart', []);
 
@@ -51,7 +63,6 @@ class FoodController extends Controller
             ];
         }
 
-        // session()->put('lokasi_sekarang', $menu->restaurant->location ?? 'UNTAR');
 
         session()->put('cart', $cart);
         return redirect()->back()->with('success', 'Makanan berhasil dimasukkan ke keranjang!');
