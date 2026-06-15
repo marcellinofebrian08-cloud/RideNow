@@ -53,20 +53,29 @@ Route::middleware('auth')->group(function () {
     // halaman wallet
     Route::get('/wallet', [WalletController::class, 'index'])->name('wallet.index');
     Route::post('/wallet/topup', [WalletController::class, 'topup'])->name('wallet.topup');
-    
+
     // halaman dine in
     Route::get('/dinein', [DineInController::class, 'index']);
-    
+
     //halam booking
     Route::get('/booking/{id}', [DineInController::class, 'bookingForm']);
     Route::post('/booking/store', [DineInController::class, 'bookingStore']);
-    
+
     //fitur kategori
+    Route::get('/dinein/category/{id}', [DineInController::class, 'category']);
+
+    //transit
+    Route::get('/transit', [TransitController::class, 'index']);
+
+    //booking transit
+    Route::get('/transit/booking/{id}', [TransitController::class, 'bookingForm']);
+    Route::post('/transit/booking/store', [TransitController::class, 'bookingStore']);
+    
+    //dinein
     Route::get('/dinein/category/{id}',[DineInController::class, 'category']);
 
     // Fitur History
     Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
-    });
 
     //Halaman Food
     Route::get('/food', [FoodController::class, 'index'])->name('food.index');
@@ -77,4 +86,4 @@ Route::middleware('auth')->group(function () {
     Route::post('/food/checkout', [FoodController::class, 'checkout'])->name('food.checkout');
     Route::get('/food/history', [FoodController::class, 'history'])->name('food.history');
     Route::get('/food/clear-cart', [FoodController::class, 'clearCart'])->name('food.clearCart');
-
+});
