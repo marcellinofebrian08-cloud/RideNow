@@ -2,14 +2,12 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\MartCategory;
+use App\Models\MartProduct;
 use Illuminate\Database\Seeder;
 
 class MartSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         // FOOD
@@ -390,6 +388,92 @@ class MartSeeder extends Seeder
             'price' => 47000,
             'picture' => 'mart_img/viva.jpeg',
             'stock' => 54
+        ]);
+
+        // Kebutuhan Rumah Tangga
+        $house= MartCategory::create([
+            'category_name' => 'Kebutuhan Rumah Tangga'
+        ]);
+
+
+        MartProduct::create([
+            'category_id' => $house->id,
+            'product_name' => 'So Klin Detergent Cair Softergent Sakura Strawberry 1600ml',
+            'price' => 36000,
+            'picture' => 'mart_img/soklin.jpeg',
+            'stock' => 78 
+        ]);
+
+
+        MartProduct::create([
+            'category_id' => $house->id,
+            'product_name' => 'Sunlight Pencuci Piring Lime 1.5l',
+            'price' => 27000,
+            'picture' => 'mart_img/sunlight.jpeg',
+            'stock' => 34
+         ]);
+
+
+        MartProduct::create([
+            'category_id' => $house->id,
+            'product_name' => 'Paseo Facial Tissue Ultra Soft',
+            'price' => 17000,
+            'picture' => 'mart_img/paseo.jpeg',
+            'stock' => 45
+        ]);
+
+
+        MartProduct::create([
+            'category_id' => $house->id,
+            'product_name' => 'Dettol Antiseptic Wet Wipes',
+            'price' => 17000,
+            'picture' => 'mart_img/dettol.jpeg',
+            'stock' => 32
+        ]);
+
+
+        MartProduct::create([
+            'category_id' => $house->id,
+            'product_name' => 'Baygon Insektisida Spray Citrus Fresh 400ml',
+            'price' => 34000,
+            'picture' => 'mart_img/baygon.jpeg',
+            'stock' => 63
+        ]);
+
+
+        MartProduct::create([
+            'category_id' => $house->id,
+            'product_name' => 'Lifebuoy Antibacterial Handwash 200ml',
+            'price' => 23000,
+            'picture' => 'mart_img/lifebuoy.jpeg',
+            'stock' => 74
+        ]);
+
+
+        MartProduct::create([
+            'category_id' => $house->id,
+            'product_name' => 'Wipol Karbol Wangi Cemara 750ml',
+            'price' => 16000,
+            'picture' => 'mart_img/wipol.jpeg',
+            'stock' => 52
+        ]);
+
+
+        MartProduct::create([
+            'category_id' => $house->id,
+            'product_name' => 'Giv Body Wash Flower & Berry 825ml',
+            'price' => 40000,
+            'picture' => 'mart_img/giv.jpeg',
+            'stock' => 29
+        ]);
+
+
+        MartProduct::create([
+            'category_id' => $house->id,
+            'product_name' => 'Selsun Shampoo Anti-Dandruf Blue 120ml',
+            'price' => 50000,
+            'picture' => 'mart_img/selsun.jpeg',
+            'stock' => 48
         ]);
     }
 }

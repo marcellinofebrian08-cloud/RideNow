@@ -8,6 +8,7 @@ use App\Http\Controllers\WalletController;
 use App\Http\Controllers\DineInController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\FoodController;
+use App\Http\Controllers\MartController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AddressController;
@@ -105,3 +106,12 @@ Route::middleware('auth')->group(function () {
 });
 
 
+    //Halaman Mart
+    Route::get('/mart', [MartController::class, 'index'])->name('mart.index');
+    Route::get('/mart/category/{id}', [MartController::class, 'showCategory'])->name('mart.showCategory');
+    Route::post('/mart/add-to-cart/{id}', [MartController::class, 'addToCart'])->name('mart.addToCart');
+    Route::get('/mart/remove-item/{id}', [MartController::class, 'removeItem'])->name('mart.removeItem');
+    Route::get('/mart/receipt', [MartController::class, 'showReceipt'])->name('mart.showReceipt');
+    Route::post('/mart/checkout', [MartController::class, 'checkout'])->name('mart.checkout');
+    Route::get('/mart/history', [MartController::class, 'history'])->name('mart.history');
+    Route::get('/mart/clear-cart', [MartController::class, 'clearCart'])->name('mart.clearCart');
