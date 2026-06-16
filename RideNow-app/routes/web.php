@@ -8,6 +8,7 @@ use App\Http\Controllers\WalletController;
 use App\Http\Controllers\DineInController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\FoodController;
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\AdminController;
 
 // halaman awal langsung diarahkan ke login
@@ -87,11 +88,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/food/checkout', [FoodController::class, 'checkout'])->name('food.checkout');
     Route::get('/food/history', [FoodController::class, 'history'])->name('food.history');
     Route::get('/food/clear-cart', [FoodController::class, 'clearCart'])->name('food.clearCart');
-});
-
-Route::middleware(['auth', \App\Http\Middleware\IsAdmin::class])->group(function () {
-
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
     
+    // Fitur Pusat Bantuan (Customer Support)
+    Route::get('/support', [TicketController::class, 'index'])->name('support.index');
+    Route::post('/support', [TicketController::class, 'store'])->name('support.store');
 
+    // Fitur Pusat Bantuan (Khusus Admin)
+    Route::get('/admin/support', [TicketController::class, 'adminIndex'])->name('admin.support.index');
+    Route::post('/admin/support/resolve/{id}', [TicketController::class, 'resolve'])->name('support.resolve');
 });
+
+
