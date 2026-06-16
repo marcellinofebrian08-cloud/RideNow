@@ -8,6 +8,7 @@ use App\Http\Controllers\WalletController;
 use App\Http\Controllers\DineInController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\FoodController;
+use App\Http\Controllers\MartController;
 
 // halaman awal langsung diarahkan ke login
 Route::get('/', function () {

@@ -15,6 +15,7 @@ class MartController extends Controller
     {
         $categories = MartCategory::all();
         return view('mart.index', compact('categories'));
+        
     }
 
     public function showCategory($id)

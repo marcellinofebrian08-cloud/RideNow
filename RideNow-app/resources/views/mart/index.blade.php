@@ -59,7 +59,7 @@
 
                     @if($imageName)
 
-                        <img src="{{ asset('images/category_img/' . $imageName) }}"
+                        <img src="{{ asset('category_img/' . $imageName) }}"
                              alt="{{ $category->category_name }}"
                              style="
                                 width: 80px;
