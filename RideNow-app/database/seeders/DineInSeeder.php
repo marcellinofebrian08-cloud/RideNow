@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\dRestaurant;
+use Illuminate\Support\Facades\DB;
 
 class DineInSeeder extends Seeder
 {

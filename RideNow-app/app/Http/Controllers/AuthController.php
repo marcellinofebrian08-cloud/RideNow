@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\History;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -16,18 +17,22 @@ class AuthController extends Controller
     { return view('auth.register'); }
 
     public function login(Request $request)
-    {
-        $data = [
-            'email' => $request->email,
-            'password' => $request->password
-        ];
+{
+    $data = [
+        'email' => $request->email,
+        'password' => $request->password
+    ];
 
-        if (Auth::attempt($data)) {
-            return redirect('/home');
-        }
-
-        return back()->with('error', 'Wrong email or password');
+    if (Auth::attempt($data)) {
+        $user = Auth::user();
+        $user->last_login_at = now();
+        $user->save();
+        
+        return redirect('/home');
     }
+
+    return back()->with('error', 'Wrong email or password');
+}
 
     public function register(Request $request)
     {
@@ -45,7 +50,16 @@ class AuthController extends Controller
     }
 
     public function home()
-    { return view('home'); }
+    { 
+        $users = [];
+        $histories = [];
+
+        if (Auth::user()->role == 'admin') {
+            $users = User::all();
+            $histories = History::with('user')->orderBy('created_at', 'desc')->get();
+    }
+    return view('home', compact('users', 'histories')); 
+    }
 
     public function editProfile()
     {
