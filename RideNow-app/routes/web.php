@@ -10,6 +10,7 @@ use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AddressController;
 
 // halaman awal langsung diarahkan ke login
 Route::get('/', function () {
@@ -96,6 +97,11 @@ Route::middleware('auth')->group(function () {
     // Fitur Pusat Bantuan (Khusus Admin)
     Route::get('/admin/support', [TicketController::class, 'adminIndex'])->name('admin.support.index');
     Route::post('/admin/support/resolve/{id}', [TicketController::class, 'resolve'])->name('support.resolve');
+
+    // Fitur Alamat Favorit
+    Route::get('/address', [AddressController::class, 'index'])->name('address.index');
+    Route::post('/address', [AddressController::class, 'store'])->name('address.store');
+    Route::post('/address/delete/{id}', [AddressController::class, 'destroy'])->name('address.destroy');
 });
 
 

@@ -11,7 +11,8 @@
     <p>Rp {{ number_format($wallet->balance, 0, ',', '.') }}</p>
 
     <p>
-        <a href="/wallet">Top Up Wallet</a>
+        <a href="/wallet">Top Up Wallet</a> |
+        <a href="/address">Kelola Alamat Favorit</a>
     </p>
 
     <hr>
@@ -44,11 +45,27 @@
         <br><br>
 
         <label>Titik Awal Penjemputan</label><br>
-        <input type="text" name="pickup_location" required>
+        <select onchange="document.getElementById('pickup_location').value = this.value" style="margin-bottom: 5px; padding: 3px;">
+            <option value="">-- Pilih dari Alamat Tersimpan (Opsional) --</option>
+            @if(isset($addresses))
+                @foreach($addresses as $address)
+                    <option value="{{ $address->full_address }}">{{ $address->label }} ({{ $address->full_address }})</option>
+                @endforeach
+            @endif
+        </select><br>
+        <input type="text" id="pickup_location" name="pickup_location" placeholder="Ketik manual atau pilih dari alamat..." required style="width: 300px;">
         <br><br>
 
         <label>Titik Akhir / Destinasi</label><br>
-        <input type="text" name="destination" required>
+        <select onchange="document.getElementById('destination').value = this.value" style="margin-bottom: 5px; padding: 3px;">
+            <option value="">-- Pilih dari Alamat Tersimpan (Opsional) --</option>
+            @if(isset($addresses))
+                @foreach($addresses as $address)
+                    <option value="{{ $address->full_address }}">{{ $address->label }} ({{ $address->full_address }})</option>
+                @endforeach
+            @endif
+        </select><br>
+        <input type="text" id="destination" name="destination" placeholder="Ketik manual atau pilih dari alamat..." required style="width: 300px;">
         <br><br>
 
         <label>Jarak / Distance (dalam KM) Rp4000/KM </label><br>
