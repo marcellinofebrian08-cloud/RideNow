@@ -8,6 +8,7 @@ use App\Models\dCategory;
 use App\Models\dRestaurant;
 use App\Models\dVoucher;
 use App\Models\dBooking;
+use App\Models\History;
 use Illuminate\Support\Facades\Redirect;
 
 class DineInController extends Controller
