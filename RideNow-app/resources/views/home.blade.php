@@ -71,6 +71,7 @@
             <a href="/mart" class="menu-link">Mart</a>
             <a href="/history" class="menu-link">History</a>
             <a href="/dinein" class="menu-link">Dine In</a>
+            <a href="/support" class="menu-link">Support</a>
         </div>
 
         @if(Auth::user()->role == 'admin')
@@ -79,7 +80,6 @@
         
         <div class="box" style="border: 2px solid red;">
             <h2 style="color: red; margin-top: 0;">Panel Admin RideNow</h2>
-            <p>Panel ini hanya terlihat oleh akun dengan role Admin.</p>
             
             <h3>Log Aktivitas Login User</h3>
             <table class="admin-table">
@@ -146,6 +146,14 @@
                     @endif
                 </tbody>
             </table>
+
+            <hr style="border: 1px solid #ddd; margin: 30px 0;">
+            <h3>Manajemen Pusat Bantuan</h3>
+            <p>Kelola laporan kendala dari pengguna aplikasi.</p>
+            <a href="{{ route('admin.support.index') }}" style="display: inline-block; background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+                Buka Pusat Resolusi Keluhan
+            </a>
+            
         </div>
         @endif
         </div>

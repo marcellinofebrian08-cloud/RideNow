@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\RideOrder;
 use App\Models\Wallet;
 use App\Models\History;
+use App\Models\Address;
+use Illuminate\Support\Facades\Auth;
 
 class RideOrderController extends Controller
 {
@@ -17,6 +19,8 @@ class RideOrderController extends Controller
             ['user_id' => $userId],
             ['balance' => 0]
         );
+
+        $addresses = \App\Models\Address::where('user_id', $userId)->get();
 
         return view('order.create', compact('wallet')); 
     }
@@ -125,4 +129,5 @@ class RideOrderController extends Controller
 
         return back()->with('error', 'Gagal menyelesaikan pesanan.');
     }
+    
 }

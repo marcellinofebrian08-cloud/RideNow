@@ -6,19 +6,23 @@ use Illuminate\Http\Request;
 use App\Models\SendOrder;
 use App\Models\Wallet;
 use App\Models\History;
+use App\Models\Address;
+use Illuminate\Support\Facades\Auth;
 
 class SendOrderController extends Controller
 {
     public function sendCreate()
     {
-        $userId = 1;
+        $userId = Auth::id();
 
         $wallet = Wallet::firstOrCreate(
             ['user_id' => $userId],
             ['balance' => 0]
         );
 
-        return view('send.create', compact('wallet'));
+        $addresses = Address::where('user_id', $userId)->get(); 
+
+        return view('send.create', compact('wallet','addresses'));
     }
 
     public function sendStore(Request $request)
