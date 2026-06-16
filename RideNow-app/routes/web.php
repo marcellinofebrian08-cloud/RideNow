@@ -8,6 +8,7 @@ use App\Http\Controllers\WalletController;
 use App\Http\Controllers\DineInController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\FoodController;
+use App\Http\Controllers\AdminController;
 
 // halaman awal langsung diarahkan ke login
 Route::get('/', function () {
@@ -86,4 +87,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/food/checkout', [FoodController::class, 'checkout'])->name('food.checkout');
     Route::get('/food/history', [FoodController::class, 'history'])->name('food.history');
     Route::get('/food/clear-cart', [FoodController::class, 'clearCart'])->name('food.clearCart');
+});
+
+Route::middleware(['auth', \App\Http\Middleware\IsAdmin::class])->group(function () {
+
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+    
+
 });
