@@ -9,6 +9,9 @@ use App\Http\Controllers\DineInController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\MartController;
+use App\Http\Controllers\TicketController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AddressController;
 
 // halaman awal langsung diarahkan ke login
 Route::get('/', function () {
@@ -54,20 +57,29 @@ Route::middleware('auth')->group(function () {
     // halaman wallet
     Route::get('/wallet', [WalletController::class, 'index'])->name('wallet.index');
     Route::post('/wallet/topup', [WalletController::class, 'topup'])->name('wallet.topup');
-    
+
     // halaman dine in
     Route::get('/dinein', [DineInController::class, 'index']);
-    
+
     //halam booking
     Route::get('/booking/{id}', [DineInController::class, 'bookingForm']);
     Route::post('/booking/store', [DineInController::class, 'bookingStore']);
-    
+
     //fitur kategori
+    Route::get('/dinein/category/{id}', [DineInController::class, 'category']);
+
+    //transit
+    Route::get('/transit', [TransitController::class, 'index']);
+
+    //booking transit
+    Route::get('/transit/booking/{id}', [TransitController::class, 'bookingForm']);
+    Route::post('/transit/booking/store', [TransitController::class, 'bookingStore']);
+    
+    //dinein
     Route::get('/dinein/category/{id}',[DineInController::class, 'category']);
 
     // Fitur History
     Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
-    });
 
     //Halaman Food
     Route::get('/food', [FoodController::class, 'index'])->name('food.index');
@@ -78,6 +90,21 @@ Route::middleware('auth')->group(function () {
     Route::post('/food/checkout', [FoodController::class, 'checkout'])->name('food.checkout');
     Route::get('/food/history', [FoodController::class, 'history'])->name('food.history');
     Route::get('/food/clear-cart', [FoodController::class, 'clearCart'])->name('food.clearCart');
+    
+    // Fitur Pusat Bantuan (Customer Support)
+    Route::get('/support', [TicketController::class, 'index'])->name('support.index');
+    Route::post('/support', [TicketController::class, 'store'])->name('support.store');
+
+    // Fitur Pusat Bantuan (Khusus Admin)
+    Route::get('/admin/support', [TicketController::class, 'adminIndex'])->name('admin.support.index');
+    Route::post('/admin/support/resolve/{id}', [TicketController::class, 'resolve'])->name('support.resolve');
+
+    // Fitur Alamat Favorit
+    Route::get('/address', [AddressController::class, 'index'])->name('address.index');
+    Route::post('/address', [AddressController::class, 'store'])->name('address.store');
+    Route::post('/address/delete/{id}', [AddressController::class, 'destroy'])->name('address.destroy');
+});
+
 
     //Halaman Mart
     Route::get('/mart', [MartController::class, 'index'])->name('mart.index');
