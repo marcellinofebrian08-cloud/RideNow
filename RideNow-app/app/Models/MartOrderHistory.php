@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class MartOrderHistory extends Model
 {
     protected $fillable = [
-        'category_name',
+        'items',
         'total_price'
     ];
 }

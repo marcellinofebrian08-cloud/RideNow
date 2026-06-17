@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('mart_order_histories', function (Blueprint $table) {
             $table->id();
-            $table->string('category_name');
+            $table->text('items');
             $table->integer('total_price');
             $table->timestamps();
         });
