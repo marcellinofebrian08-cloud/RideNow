@@ -184,14 +184,13 @@ class MartController extends Controller
         $wallet->save();
 
         History::create([
-
             'user_id' => $user_id,
 
             'transaction_type' =>
                 'Pembayaran Mart',
 
             'description' =>
-                'Belanja kebutuhan di RideNow Mart',
+                'Belanja kebutuhan di Layanan Mart',
 
             'amount' =>
                 $harga_akhir,
@@ -200,27 +199,26 @@ class MartController extends Controller
                 'Success'
         ]);
 
-        $first_item = reset($cart);
+        $item_list = collect($cart)
+            ->map(function ($item) {
 
-        $category = MartCategory::find(
-            $first_item['category_id']
-        );
+                return $item['product_name']
+                    .' x'
+                    .$item['quantity'];
 
-        $category_name = $category
-            ? $category->category_name
-            : 'Kategori Tidak Diketahui';
+            })
+            ->implode("\n");
 
         MartOrderHistory::create([
-
-            'category_name' =>
-                $category_name,
+            'items' =>
+                $item_list,
 
             'total_price' =>
                 $harga_akhir
         ]);
 
         session()->forget('mart_cart');
-
+      
         return redirect()
             ->route('mart.history')
             ->with(
