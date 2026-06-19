@@ -66,9 +66,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/booking/{id}', [DineInController::class, 'bookingForm']);
     Route::post('/booking/store', [DineInController::class, 'bookingStore']);
 
-    //fitur kategori
-    Route::get('/dinein/category/{id}', [DineInController::class, 'category']);
-
     //transit
     Route::get('/transit', [TransitController::class, 'index']);
 
