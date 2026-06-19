@@ -8,6 +8,7 @@ use App\Models\OrderHistory;
 use App\Models\Wallet; 
 use App\Models\History;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FoodController extends Controller
 {
@@ -115,7 +116,7 @@ class FoodController extends Controller
 
         $harga_akhir = $total_harga_makanan + $ongkir;
 
-        $user_id = 1;
+        $user_id = Auth::id();
         $wallet = Wallet::firstOrCreate(
             ['user_id' => $user_id],
             ['balance' => 0]

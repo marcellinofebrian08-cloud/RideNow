@@ -10,11 +10,11 @@ class RideOrder extends Model
         'passenger_name',
         'pickup_location',
         'destination',
+        'distance',
         'ride_type',
         'price',
         'status',
         'driver_name', 
-        'plate_number',
-        'distance'
+        'plate_number'
     ];
 }

@@ -30,7 +30,7 @@ class SendOrderController extends Controller
         $distance = $request->distance; 
         $totalPrice = $distance * 4000; // Tarif flat Send Rp 4.000 / KM
 
-        $userId = 1;
+        $userId = Auth::id();
 
         $wallet = Wallet::firstOrCreate(
             ['user_id' => $userId],
@@ -94,7 +94,7 @@ class SendOrderController extends Controller
         $order = SendOrder::findOrFail($id);
 
         if ($order->status == 'Accepted') {
-            $userId = 1;
+            $userId = Auth::id();
             $wallet = Wallet::where('user_id', $userId)->first();
             if ($wallet) {
                 $wallet->balance = $wallet->balance + $order->price;

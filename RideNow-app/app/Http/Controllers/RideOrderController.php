@@ -13,7 +13,7 @@ class RideOrderController extends Controller
 {
     public function orderCreate()
     { 
-        $userId = 1;
+        $userId = Auth::id();
 
         $wallet = Wallet::firstOrCreate(
             ['user_id' => $userId],
@@ -22,7 +22,7 @@ class RideOrderController extends Controller
 
         $addresses = \App\Models\Address::where('user_id', $userId)->get();
 
-        return view('order.create', compact('wallet')); 
+        return view('order.create', compact('wallet', 'addresses')); 
     }
 
     public function orderStore(Request $request)
@@ -33,7 +33,7 @@ class RideOrderController extends Controller
         $pricePerKm = $request->ride_type == 'Bike' ? 3000 : 6000;
         $totalPrice = $distance * $pricePerKm;
 
-        $userId = 1;
+        $userId = Auth::id();
 
         $wallet = Wallet::firstOrCreate(
             ['user_id' => $userId],
@@ -95,7 +95,7 @@ class RideOrderController extends Controller
         $order = RideOrder::findOrFail($id);
 
         if ($order->status == 'Accepted') {
-            $userId = 1;
+            $userId = Auth::id();
             $wallet = Wallet::where('user_id', $userId)->first();
             if ($wallet) {
                 $wallet->balance = $wallet->balance + $order->price;

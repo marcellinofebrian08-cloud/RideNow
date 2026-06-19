@@ -114,7 +114,7 @@
                 <thead>
                     <tr>
                         <th>Waktu Transaksi</th>
-                        <th>Nama User</th>
+                        <th>ID User</th>
                         <th>Tipe Transaksi</th>
                         <th>Deskripsi</th>
                         <th>Nominal</th>
@@ -126,7 +126,7 @@
                         @foreach($histories as $log)
                         <tr>
                             <td>{{ $log->created_at->format('d-M-Y H:i:s') }}</td>
-                            <td>{{ $log->user ? $log->user->name : 'User Dihapus' }}</td>
+                            <td>{{ $log->user_id }}</td>
                             <td>{{ $log->transaction_type }}</td>
                             <td>{{ $log->description }}</td>
                             <td>Rp {{ number_format($log->amount, 0, ',', '.') }}</td>
