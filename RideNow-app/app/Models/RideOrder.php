@@ -14,6 +14,7 @@ class RideOrder extends Model
         'price',
         'status',
         'driver_name', 
-        'plate_number'
+        'plate_number',
+        'distance'
     ];
 }
