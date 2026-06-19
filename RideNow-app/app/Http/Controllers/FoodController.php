@@ -155,7 +155,7 @@ class FoodController extends Controller
         
         $harga_akhir = $total_harga_makanan + $ongkir;
 
-        $user_id = 1;
+        $user_id = Auth::id();
         $wallet = Wallet::where('user_id', $user_id)->first();
 
         if (!$wallet || $wallet->balance < $harga_akhir) {
