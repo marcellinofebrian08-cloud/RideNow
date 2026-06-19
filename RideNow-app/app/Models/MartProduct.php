@@ -11,7 +11,6 @@ class MartProduct extends Model
         'product_name',
         'price',
         'picture',
-        'stock'
     ];
 
     public function category()

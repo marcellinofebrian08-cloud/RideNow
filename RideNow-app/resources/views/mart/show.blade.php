@@ -37,10 +37,6 @@
                 </th>
 
                 <th style="border: 3px solid black;">
-                    Stok
-                </th>
-
-                <th style="border: 3px solid black;">
                     Aksi
                 </th>
             </tr>
@@ -72,11 +68,6 @@
 
                 <td style="border: 3px solid black;">
                     Rp {{ number_format($product->price, 0, ',', '.') }}
-                </td>
-
-                <td style="border: 3px solid black; text-align:center;">
-
-                    {{ $product->stock }}
                 </td>
 
                 <td style="border: 3px solid black; text-align:center;">
