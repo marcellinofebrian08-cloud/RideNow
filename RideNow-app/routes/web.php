@@ -93,6 +93,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/support', [TicketController::class, 'index'])->name('support.index');
     Route::post('/support', [TicketController::class, 'store'])->name('support.store');
 
+    //Halaman Mart
+    Route::get('/mart', [MartController::class, 'index'])->name('mart.index');
+    Route::get('/mart/category/{id}', [MartController::class, 'showCategory'])->name('mart.showCategory');
+    Route::post('/mart/add-to-cart/{id}', [MartController::class, 'addToCart'])->name('mart.addToCart');
+    Route::get('/mart/remove-item/{id}', [MartController::class, 'removeItem'])->name('mart.removeItem');
+    Route::get('/mart/receipt', [MartController::class, 'showReceipt'])->name('mart.showReceipt');
+    Route::post('/mart/checkout', [MartController::class, 'checkout'])->name('mart.checkout');
+    Route::get('/mart/history', [MartController::class, 'history'])->name('mart.history');
+    Route::get('/mart/clear-cart', [MartController::class, 'clearCart'])->name('mart.clearCart');
+    
     // Fitur Pusat Bantuan (Khusus Admin)
     Route::get('/admin/support', [TicketController::class, 'adminIndex'])->name('admin.support.index');
     Route::post('/admin/support/resolve/{id}', [TicketController::class, 'resolve'])->name('support.resolve');
@@ -103,13 +113,3 @@ Route::middleware('auth')->group(function () {
     Route::post('/address/delete/{id}', [AddressController::class, 'destroy'])->name('address.destroy');
 });
 
-
-    //Halaman Mart
-    Route::get('/mart', [MartController::class, 'index'])->name('mart.index');
-    Route::get('/mart/category/{id}', [MartController::class, 'showCategory'])->name('mart.showCategory');
-    Route::post('/mart/add-to-cart/{id}', [MartController::class, 'addToCart'])->name('mart.addToCart');
-    Route::get('/mart/remove-item/{id}', [MartController::class, 'removeItem'])->name('mart.removeItem');
-    Route::get('/mart/receipt', [MartController::class, 'showReceipt'])->name('mart.showReceipt');
-    Route::post('/mart/checkout', [MartController::class, 'checkout'])->name('mart.checkout');
-    Route::get('/mart/history', [MartController::class, 'history'])->name('mart.history');
-    Route::get('/mart/clear-cart', [MartController::class, 'clearCart'])->name('mart.clearCart');
