@@ -7,6 +7,7 @@ use App\Models\TransitBooking;
 use Illuminate\Http\Request;
 use App\Models\Wallet;
 use App\Models\History;
+use Illuminate\Support\Facades\Auth;
 
 class TransitController extends Controller
 {
@@ -19,7 +20,10 @@ class TransitController extends Controller
     public function bookingForm($id)
     {
         $transit = Transit::findOrFail($id);
-        $wallet = Wallet::where('user_id', auth()->id())->first();
+        $wallet = Wallet::firstOrCreate(
+            ['user_id' => Auth::id()],
+            ['balance' => 0]
+        );
         return view('transit.booking', compact(
             'transit',
             'wallet'
@@ -29,7 +33,10 @@ class TransitController extends Controller
     public function bookingStore(Request $request)
     {
         $transit = Transit::findOrFail($request->transit_id);
-        $wallet = Wallet::where('user_id', auth()->id())->first();
+        $wallet = Wallet::firstOrCreate(
+            ['user_id' => Auth::id()],
+            ['balance' => 0]
+        );
         $total = $transit->price * $request->total_passenger;
         if ($wallet->balance < $total) {
             return redirect()->back()
