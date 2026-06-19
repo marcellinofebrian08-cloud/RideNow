@@ -78,12 +78,12 @@
             <a href="/wallet" class="menu-link">Wallet</a>
             <a href="/ride" class="menu-link">Ride</a>
             <a href="/send" class="menu-link">Send</a>
+            <a href="/transit" class="menu-link">Transit</a>
             <a href="/food" class="menu-link">Food</a>
             <a href="/mart" class="menu-link">Mart</a>
-            <a href="/history" class="menu-link">History</a>
             <a href="/dinein" class="menu-link">Dine In</a>
+            <a href="/history" class="menu-link">History</a>
             <a href="/support" class="menu-link">Support</a>
-            <a href="/transit" class="menu-link">Transit</a>
         </div>
 
         @if(Auth::user()->role == 'admin')
@@ -135,22 +135,22 @@
                 </thead>
                 <tbody>
                     @if(count($histories) > 0)
-                        @foreach($histories as $log)
-                        <tr>
-                            <td>{{ $log->created_at->format('d-M-Y H:i:s') }}</td>
-                            <td>{{ $log->user_id }}</td>
-                            <td>{{ $log->transaction_type }}</td>
-                            <td>{{ $log->description }}</td>
-                            <td>Rp {{ number_format($log->amount, 0, ',', '.') }}</td>
-                            <td>
-                                @if($log->status == 'Success')
-                                    <strong style="color: green;">{{ $log->status }}</strong>
-                                @else
-                                    <strong style="color: orange;">{{ $log->status }}</strong>
-                                @endif
-                            </td>
-                        </tr>
-                        @endforeach
+                    @foreach($histories as $log)
+                    <tr>
+                        <td>{{ $log->created_at->format('d-M-Y H:i:s') }}</td>
+                        <td>{{ $log->user_id }}</td>
+                        <td>{{ $log->transaction_type }}</td>
+                        <td>{{ $log->description }}</td>
+                        <td>Rp {{ number_format($log->amount, 0, ',', '.') }}</td>
+                        <td>
+                            @if($log->status == 'Success')
+                            <strong style="color: green;">{{ $log->status }}</strong>
+                            @else
+                            <strong style="color: orange;">{{ $log->status }}</strong>
+                            @endif
+                        </td>
+                    </tr>
+                    @endforeach
                     @else
                     <tr>
                         <td colspan="6" style="text-align: center;">Belum ada transaksi di aplikasi.</td>
