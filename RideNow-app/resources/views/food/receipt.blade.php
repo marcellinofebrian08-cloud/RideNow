@@ -1,4 +1,4 @@
-<h1>STRUK BELANJA</h1>
+<h1>Struk Pemesanan Makanan</h1>
 
 @if(session('error'))
     <p style="color: red; font-weight: bold;">{{ session('error') }}</p>
@@ -8,8 +8,13 @@
     <p>Keranjang kosong.</p>
     <br>
     <a href="{{ route('food.index') }}" style="text-decoration: none;">
-        <button type="button" style="background-color: white; border: 1px solid # lightgray; padding: 6px 12px; cursor: pointer;">
-            Kembali
+        <button type="button" 
+            style=
+                "background-color: white; 
+                 border: 1px solid lightgray; 
+                 padding: 6px 12px; 
+                 cursor: pointer;">
+                 Kembali
         </button>
     </a>
 @else
@@ -54,12 +59,12 @@
 
     <hr style="border: 0; border-top: 1px solid # lightgray; margin: 15px 0;">
 
-    <h3>Informasi Wallet Asli:</h3>
-    <p>Saldo Wallet Anda: <strong>Rp {{ number_format($saldo_sekarang, 0, ',', '.') }}</strong></p>
+    <h3>Informasi Wallet:</h3>
+    <p>Saldo Wallet: <strong>Rp {{ number_format($saldo_sekarang, 0, ',', '.') }}</strong></p>
 
     <h3>Rincian Biaya:</h3>
     <p>Total Makanan: Rp {{ number_format($total_harga_makanan, 0, ',', '.') }}</p>
-    <p>Ongkos Kirim: Rp {{ number_format($ongkir, 0, ',', '.') }}</p>
+    <p>Biaya Pengiriman: Rp {{ number_format($ongkir, 0, ',', '.') }}</p>
     <p><strong>Total Akhir: Rp {{ number_format($harga_akhir, 0, ',', '.') }}</strong></p>
 
     <br>
@@ -71,13 +76,13 @@
             </button>
         </form>
     @else
-        <div style="background-color: white; color: red; padding: 10px; display: inline-block; border: 1px solid red; font-weight: bold; margin-bottom: 15px;">
-            Saldo Wallet Anda tidak cukup! Silakan isi saldo terlebih dahulu.
+        <div style="background-color: mistyrose; color: red; padding: 10px; display: inline-block; border: 1px solid red; font-weight: bold; margin-bottom: 15px;">
+            Saldo Wallet Anda tidak mencukupi
         </div>
         <br>
         <a href="{{ route('wallet.index') }}" style="text-decoration: none;">
             <button type="button" style="background-color: blue; color: white; padding: 10px 15px; border: 1px solid darkblue; cursor: pointer; font-weight: bold;">
-                Pergi ke Halaman Top Up Saldo
+                Pergi ke Halaman Top Up 
             </button>
         </a>
     @endif
