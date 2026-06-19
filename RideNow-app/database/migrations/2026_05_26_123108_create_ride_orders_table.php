@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('destination');
             $table->enum('ride_type', ['Bike', 'Car']);
             $table->integer('price');
+            $table->integer('distance')->nullable();
             $table->string('status')->default('Pending');
             $table->string('driver_name')->nullable();
             $table->string('plate_number')->nullable();

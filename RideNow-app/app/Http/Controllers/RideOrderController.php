@@ -55,6 +55,7 @@ class RideOrderController extends Controller
             'passenger_name' => $request->passenger_name,
             'pickup_location' => $request->pickup_location,
             'destination' => $request->destination,
+            'distance' => $request->distance,
             'ride_type' => $request->ride_type,
             'price' => $totalPrice, 
             'status' => 'Accepted',
