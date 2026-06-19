@@ -19,7 +19,7 @@ class TransitController extends Controller
     public function bookingForm($id)
     {
         $transit = Transit::findOrFail($id);
-        $wallet = Wallet::first();
+        $wallet = Wallet::where('user_id', auth()->id())->first();
         return view('transit.booking', compact(
             'transit',
             'wallet'
@@ -29,7 +29,7 @@ class TransitController extends Controller
     public function bookingStore(Request $request)
     {
         $transit = Transit::findOrFail($request->transit_id);
-        $wallet = Wallet::first();
+        $wallet = Wallet::where('user_id', auth()->id())->first();
         $total = $transit->price * $request->total_passenger;
         if ($wallet->balance < $total) {
             return redirect()->back()
