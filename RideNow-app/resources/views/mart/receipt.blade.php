@@ -1,4 +1,4 @@
-<h1>STRUK BELANJA MART</h1>
+<h1>Struk Belanja Mart</h1>
 
 @if(session('error'))
     <p style="color: red;">
@@ -51,15 +51,10 @@
             <tr>
 
                 <td style="border: 3px solid black; text-align:center;">
-                    @if($item['picture'])
-
                         <img src="{{ asset($item['picture']) }}"
                              width="60"
                              height="60"
                              style="object-fit: contain;">
-                    @else
-                        Tidak Ada Gambar
-                    @endif
                 </td>
 
                 <td style="border: 3px solid black;">
@@ -145,8 +140,8 @@
         </form>
     @else
         <div style="
-            background-color:#ffcccc;
-            color:#cc0000;
+            background-color:lightpink;
+            color:red;
             padding:10px;
             border:1px solid red;
             display:inline-block;

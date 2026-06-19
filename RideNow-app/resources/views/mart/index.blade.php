@@ -1,4 +1,4 @@
-<h1>Layanan Pesan Antar Mart</h1>
+<h1>RideNow Mart</h1>
 
 @if(session('success'))
     <p style="color: green;">
@@ -12,7 +12,7 @@
     </p>
 @endif
 
-<h3>Pilih Kategori Produk:</h3>
+<h3>Pilih Kategori Produk</h3>
 
 @if($categories->isEmpty())
     <p>Belum ada kategori yang tersedia.</p>
