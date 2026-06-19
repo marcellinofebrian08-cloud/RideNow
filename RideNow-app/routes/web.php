@@ -12,6 +12,7 @@ use App\Http\Controllers\MartController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\TransitController;
 
 // halaman awal langsung diarahkan ke login
 Route::get('/', function () {
