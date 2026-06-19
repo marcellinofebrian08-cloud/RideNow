@@ -1,6 +1,6 @@
-<h1>Layanan Pesan Antar Makanan</h1>
+<h1>RideNow Food</h1>
 
-<h3>Pilih Lokasi Pengantaran:</h3>
+<h3>Pilih Lokasi Pengantaran</h3>
 <p>
     <a href="{{ route('food.index', ['location' => 'UNTAR']) }}" style="text-decoration: none;">
        <button type="button" style="{{ $pilih_lokasi == 'UNTAR' ? 'font-weight: bold; background-color:lightpink; color: maroon; border: 2px solid maroon;' : 'background-color:white; border: 1px solid lightgray;' }} padding: 5px 15px; cursor: pointer;">
