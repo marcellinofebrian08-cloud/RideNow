@@ -10,6 +10,7 @@ use App\Models\dVoucher;
 use App\Models\dBooking;
 use App\Models\History;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 
 class DineInController extends Controller
 {
@@ -42,7 +43,7 @@ class DineInController extends Controller
         ]);
         if ($booking) {
             History::create([
-                'user_id' => 1,
+                'user_id' => Auth::id(),
                 'transaction_type' => 'Dine In Order',
                 'description' => 'Booking dine in untuk ' . $request->total_people . ' orang pada tanggal ' . $request->booking_date,
                 'amount' => 0,
