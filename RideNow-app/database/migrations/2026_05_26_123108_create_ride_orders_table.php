@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('passenger_name');
             $table->string('pickup_location');
             $table->string('destination');
+            $table->integer('distance')->nullable();
             $table->enum('ride_type', ['Bike', 'Car']);
             $table->integer('price');
             $table->string('status')->default('Pending');

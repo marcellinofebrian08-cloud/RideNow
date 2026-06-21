@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Wallet;
 use App\Models\History;
+use Illuminate\Support\Facades\Auth;
 
 class WalletController extends Controller
 {
     public function index()
     {
-        $userId = 1;
+        $userId = Auth::id();
 
         $wallet = Wallet::firstOrCreate(
             ['user_id' => $userId],
@@ -26,7 +27,7 @@ class WalletController extends Controller
             'amount' => 'required|numeric|min:1000'
         ]);
 
-        $userId = 1;
+        $userId = Auth::id();
 
         $wallet = Wallet::firstOrCreate(
             ['user_id' => $userId],

@@ -37,6 +37,7 @@
     <div class="header">
         <h2>Dine In</h2>
         <p>Pilih Restaurant Favorite Anda</p>
+        <p><a href="/home">Kembali ke Dashboard</a></p>
     </div>
     <div class="container mt-4">
         @if(session('success'))
@@ -52,7 +53,7 @@
             <div class="col-3 mb-4">
                 <a href="/dinein/category/{{$category->id}}" style="text-decoration: none;color:black;">
                     <div class="text-center">
-                        <img src="{{ asset('storage/'.$category->icon) }}"width="70"height="70"style="object-fit:cover;border-radius:15px;">
+                        <img src="{{ asset('storage/'.$category->icon) }}" width="70" height="70" style="object-fit:cover;border-radius:15px;">
                         <p class="mt-2">
                             {{$category->name}}
                         </p>

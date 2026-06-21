@@ -12,6 +12,7 @@ use App\Http\Controllers\MartController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\TransitController;
 
 // halaman awal langsung diarahkan ke login
 Route::get('/', function () {
@@ -65,9 +66,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/booking/{id}', [DineInController::class, 'bookingForm']);
     Route::post('/booking/store', [DineInController::class, 'bookingStore']);
 
-    //fitur kategori
-    Route::get('/dinein/category/{id}', [DineInController::class, 'category']);
-
     //transit
     Route::get('/transit', [TransitController::class, 'index']);
 
@@ -104,7 +102,7 @@ Route::middleware('auth')->group(function () {
     // Fitur Pusat Bantuan (Customer Support)
     Route::get('/support', [TicketController::class, 'index'])->name('support.index');
     Route::post('/support', [TicketController::class, 'store'])->name('support.store');
-
+    
     // Fitur Pusat Bantuan (Khusus Admin)
     Route::get('/admin/support', [TicketController::class, 'adminIndex'])->name('admin.support.index');
     Route::post('/admin/support/resolve/{id}', [TicketController::class, 'resolve'])->name('support.resolve');

@@ -34,6 +34,7 @@
                 <button class="btn btn-primary w-100">
                     Booking Sekarang
                 </button>
+                
             </form>
         </div>
     </div>

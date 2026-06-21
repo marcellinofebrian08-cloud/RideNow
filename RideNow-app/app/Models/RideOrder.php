@@ -10,6 +10,7 @@ class RideOrder extends Model
         'passenger_name',
         'pickup_location',
         'destination',
+        'distance',
         'ride_type',
         'price',
         'status',

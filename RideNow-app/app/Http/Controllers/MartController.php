@@ -8,6 +8,7 @@ use App\Models\MartOrderHistory;
 use App\Models\Wallet; 
 use App\Models\History;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MartController extends Controller
 {
@@ -103,7 +104,7 @@ class MartController extends Controller
             $total_harga_barang +
             $ongkir;
 
-        $user_id = 1;
+        $user_id = Auth::id();
 
         $wallet = Wallet::firstOrCreate(
             ['user_id' => $user_id],
@@ -157,7 +158,7 @@ class MartController extends Controller
             $total_harga_barang +
             $ongkir;
 
-        $user_id = 1;
+        $user_id = Auth::id();
 
         $wallet = Wallet::where(
             'user_id',
