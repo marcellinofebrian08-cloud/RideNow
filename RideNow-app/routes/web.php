@@ -89,10 +89,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/food/history', [FoodController::class, 'history'])->name('food.history');
     Route::get('/food/clear-cart', [FoodController::class, 'clearCart'])->name('food.clearCart');
     
-    // Fitur Pusat Bantuan (Customer Support)
-    Route::get('/support', [TicketController::class, 'index'])->name('support.index');
-    Route::post('/support', [TicketController::class, 'store'])->name('support.store');
-
     //Halaman Mart
     Route::get('/mart', [MartController::class, 'index'])->name('mart.index');
     Route::get('/mart/category/{id}', [MartController::class, 'showCategory'])->name('mart.showCategory');
@@ -102,6 +98,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/mart/checkout', [MartController::class, 'checkout'])->name('mart.checkout');
     Route::get('/mart/history', [MartController::class, 'history'])->name('mart.history');
     Route::get('/mart/clear-cart', [MartController::class, 'clearCart'])->name('mart.clearCart');
+
+    // Fitur Pusat Bantuan (Customer Support)
+    Route::get('/support', [TicketController::class, 'index'])->name('support.index');
+    Route::post('/support', [TicketController::class, 'store'])->name('support.store');
     
     // Fitur Pusat Bantuan (Khusus Admin)
     Route::get('/admin/support', [TicketController::class, 'adminIndex'])->name('admin.support.index');
@@ -112,4 +112,3 @@ Route::middleware('auth')->group(function () {
     Route::post('/address', [AddressController::class, 'store'])->name('address.store');
     Route::post('/address/delete/{id}', [AddressController::class, 'destroy'])->name('address.destroy');
 });
-
